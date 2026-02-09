@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Oracle - Your Fortune Awaits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background stars -->
+    <div class="stars-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+
+    <!-- Main container -->
+    <div class="app-container">
+        <!-- Screen 1: Welcome / Info Entry -->
+        <div class="screen active" id="welcome-screen">
+            <div class="mystical-orb"></div>
+            <h1 class="main-title">
+                <span class="title-glow">Mystic Oracle</span>
+            </h1>
+            <p class="subtitle">The cards know what you seek...</p>
+            
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="user-name">Your Name</label>
+                    <input type="text" id="user-name" placeholder="Enter your name" maxlength="30" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="user-age">Your Age (optional)</label>
+                    <input type="number" id="user-age" placeholder="Optional" min="1" max="120">
+                </div>
+            </div>
+
+            <button class="primary-btn" id="begin-journey-btn">
+                <span>Begin Your Journey</span>
+                <div class="btn-glow"></div>
+            </button>
+
+            <div class="usage-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Readings Today:</span>
+                    <span class="stat-value" id="daily-usage">0/10</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Luck Meter:</span>
+                    <div class="luck-meter">
+                        <div class="luck-fill" id="luck-fill"></div>
+                    </div>
+                    <span class="stat-value" id="luck-value">50%</span>
+                </div>
+            </div>
+
+            <button class="admin-toggle" id="admin-toggle">⚙️</button>
+        </div>
+
+        <!-- Screen 2: Category Selection -->
+        <div class="screen" id="category-screen">
+            <button class="back-btn" id="back-to-welcome">← Back</button>
+            
+            <h2 class="screen-title">Choose Your Path</h2>
+            <p class="screen-subtitle greeting-text" id="greeting"></p>
+
+            <div class="categories-grid">
+                <div class="category-card" data-category="love">
+                    <div class="category-icon">💖</div>
+                    <h3>Love</h3>
+                    <p>Matters of the heart</p>
+                    <div class="category-uses">
+                        <span id="love-uses">0/3</span> today
+                    </div>
+                </div>
+                <div class="category-card" data-category="money">
+                    <div class="category-icon">💰</div>
+                    <h3>Money</h3>
+                    <p>Fortune & prosperity</p>
+                    <div class="category-uses">
+                        <span id="money-uses">0/3</span> today
+                    </div>
+                </div>
+                <div class="category-card" data-category="life">
+                    <div class="category-icon">🌟</div>
+                    <h3>Life</h3>
+                    <p>Purpose & destiny</p>
+                    <div class="category-uses">
+                        <span id="life-uses">0/3</span> today
+                    </div>
+                </div>
+                <div class="category-card" data-category="chaos">
+                    <div class="category-icon">🔮</div>
+                    <h3>Chaos</h3>
+                    <p>The unexpected</p>
+                    <div class="category-uses">
+                        <span id="chaos-uses">0/3</span> today
+                    </div>
+                </div>
+            </div>
+
+            <div class="cooldown-notice" id="cooldown-notice"></div>
+        </div>
+
+        <!-- Screen 3: Card Selection -->
+        <div class="screen" id="card-screen">
+            <button class="back-btn" id="back-to-category">← Back</button>
+            
+            <h2 class="screen-title">Three Cards Await</h2>
+            <p class="screen-subtitle">Choose wisely. Each card holds a different fate.</p>
+
+            <div class="cards-container">
+                <div class="tarot-card" data-card="1">
+                    <div class="card-back">
+                        <div class="card-pattern"></div>
+                        <div class="card-glow-effect"></div>
+                    </div>
+                </div>
+                <div class="tarot-card" data-card="2">
+                    <div class="card-back">
+                        <div class="card-pattern"></div>
+                        <div class="card-glow-effect"></div>
+                    </div>
+                </div>
+                <div class="tarot-card" data-card="3">
+                    <div class="card-back">
+                        <div class="card-pattern"></div>
+                        <div class="card-glow-effect"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-hint">Hover to feel the energy...</div>
+        </div>
+
+        <!-- Screen 4: Fortune Reveal -->
+        <div class="screen" id="fortune-screen">
+            <div class="fortune-container">
+                <div class="chosen-card-display">
+                    <div class="card-reveal">
+                        <div class="card-symbol" id="card-symbol">✨</div>
+                    </div>
+                </div>
+
+                <h2 class="fortune-title" id="fortune-title">Your Destiny</h2>
+                <div class="fortune-text" id="fortune-text"></div>
+
+                <div class="fortune-actions">
+                    <button class="primary-btn" id="read-again-btn">
+                        <span>Consult Again</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                    <button class="secondary-btn" id="view-history-btn">View History</button>
+                </div>
+
+                <div class="next-reading-timer" id="next-reading-timer"></div>
+            </div>
+        </div>
+
+        <!-- Screen 5: History -->
+        <div class="screen" id="history-screen">
+            <button class="back-btn" id="back-from-history">← Back</button>
+            
+            <h2 class="screen-title">Your Journey</h2>
+            <p class="screen-subtitle">Past readings remembered...</p>
+
+            <div class="history-container" id="history-container">
+                <div class="empty-history">No fortunes revealed yet. Your journey begins now.</div>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div class="admin-panel" id="admin-panel">
+            <div class="admin-content">
+                <h3>Admin Panel</h3>
+                <div class="admin-lock" id="admin-lock">
+                    <input type="password" id="admin-password" placeholder="Enter password">
+                    <button id="admin-unlock-btn">Unlock</button>
+                </div>
+                <div class="admin-controls hidden" id="admin-controls">
+                    <div class="admin-option">
+                        <label>
+                            <input type="checkbox" id="disable-limits-toggle">
+                            Disable All Limits
+                        </label>
+                    </div>
+                    <div class="admin-option">
+                        <button class="admin-btn" id="reset-usage-btn">Reset Daily Usage</button>
+                    </div>
+                    <div class="admin-option">
+                        <button class="admin-btn" id="reset-history-btn">Clear History</button>
+                    </div>
+                    <div class="admin-option">
+                        <button class="admin-btn danger" id="reset-all-btn">Reset Everything</button>
+                    </div>
+                </div>
+                <button class="close-admin" id="close-admin">×</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti container -->
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
